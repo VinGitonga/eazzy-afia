@@ -201,6 +201,18 @@ class Implementor:
             return message
         except:
             return None
+        
+    def send_update_info(self, phone, msg):
+        try:
+            message = client.messages \
+                .create(
+                    body=msg,
+                    from_='whatsapp:+14155238886',
+                    to=f"whatsapp:+{phone}"
+                )
+            return message
+        except:
+            return None
 
     def approve_appointment_status(self, appointmentID):
         try:

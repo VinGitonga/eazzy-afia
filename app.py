@@ -5,6 +5,7 @@ import re
 from db import (Implementor, Appointment)
 from redis_om import Migrator
 from flask_cors import CORS
+import time
 
 app = Flask(__name__)
 
@@ -451,6 +452,26 @@ def get_all_feedbacks():
     feedbacks = implementor.get_all_feedbacks()
 
     return jsonify(feedbacks)
+
+@app.route("/send-bulk-updates", methods=["POST"])
+def send_bulk_updates():
+    data = json.loads(request.data)
+
+    data = dict(data)
+
+    message = data["message"]
+
+    phones = list(data["phones"])
+
+    for phone in phones:
+        implementor.send_update_info(phone, message)
+        # delay next send by 3 secs
+        time.sleep(3)
+
+
+    # implementor.send_bulk_updates(message)
+
+    return "Sent", 200
 
 
 if __name__ == "__main__":
