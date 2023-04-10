@@ -1,0 +1,5 @@
+Flask
+twilio
+flask_cors
+redis_om
+python-dotenv
