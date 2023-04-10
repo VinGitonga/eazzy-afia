@@ -42,7 +42,7 @@ import { TbChevronDown } from "react-icons/tb";
 import { toast } from "react-hot-toast";
 import { getphones } from "@/utils";
 
-const baseURL = "http://localhost:5000";
+const baseURL = "https://eazzy-api-wk0c.onrender.com";
 
 type TVariant = "approve" | "cancel";
 

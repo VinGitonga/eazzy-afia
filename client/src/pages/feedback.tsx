@@ -4,7 +4,7 @@ import { IFeedback } from '@/types/Feedback';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const baseURL = "http://localhost:5000";
+const baseURL = "https://eazzy-api-wk0c.onrender.com";
 
 const feedback = () => {
     const [feedbacks, setFeedbacks] = useState<IFeedback[]>([
