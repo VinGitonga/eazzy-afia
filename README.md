@@ -18,6 +18,7 @@ We built the application using the following technologies:
 - Flask
 - Twilio
 - Google Maps API
+- React JS
 
 ## Challenges we ran into 🏃
 
