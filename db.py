@@ -3,16 +3,19 @@ from redis_om import (
     Field,
     get_redis_connection
 )
-from redis import Redis
 import random
 import datetime as dt
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 
 def generate_random_number():
     return random.randint(100000, 999999)
 
 
-url = "redis://default:wF6cuLb4mtLypFQ0fOEdUxvYhpOGwVMW@redis-12534.c100.us-east-1-4.ec2.cloud.redislabs.com:12534"
+url = os.getenv("REDIS_OM_URL")
 
 # Tuple for appointment status
 APPOINTMENT_STATUS = (
@@ -40,6 +43,18 @@ class Appointment(HashModel):
     time: str
     appointmentId: int = Field(index=True)
     status: str = Field(default="pending")
+
+    class Meta:
+        database = get_redis_connection(url=url)
+
+
+class UserFeedback(HashModel):
+    id: str = Field(index=True)
+    phone: str = Field(index=True)
+    feedback: str
+    date: str
+    time: str
+    feedbackId: int = Field(index=True)
 
     class Meta:
         database = get_redis_connection(url=url)
@@ -133,6 +148,31 @@ class Implementor:
             return appointment
         except ValueError as e:
             print(e)
+            return None
+
+    def save_feedback(
+        self,
+        nationalId,
+        phone,
+        feedback
+    ):
+        feedback = UserFeedback(
+            id=nationalId,
+            phone=phone,
+            feedback=feedback,
+            date=dt.datetime.now().strftime("%d/%m/%Y"),
+            time=dt.datetime.now().strftime("%H:%M:%S"),
+            feedbackId=generate_random_number()
+        )
+        feedback.save()
+
+        return feedback
+    
+    def get_all_feedbacks(self):
+        try:
+            feedbacks = UserFeedback.find().all()
+            return feedbacks
+        except:
             return None
 
 
