@@ -420,173 +420,171 @@ locations = [
         }
     },
     {
-        "MountainMall": {
-            "area": "Thika Road",
-            "county": "TBD",
-            "link": "",
-            "name": "Equity Afia, Mountain Mall",
-            "building": "2nd Floor Mountain Mall Building along Thika Road",
-            "tel": "0765 000069",
-            "email": "",
-            "services": [],
-            "operatingHours":{
+        "area": "Mountain Mall",
+        "county": "TBD",
+        "link": "https://goo.gl/maps/uLbLRiKNbQ3zh87C8",
+        "name": "Equity Afia, Mountain Mall",
+        "building": "2nd Floor Mountain Mall Building along Thika Road",
+        "tel": "0765 000069",
+        "email": "",
+        "services": [],
+        "operatingHours":{
                 "Weekdays": "8.30 am to 7.30 pm",
                 "Weekends": "8.30 am to 7.30 pm"
-            }
-        },
-        "Eastleigh": {
-            "area": "Eastleigh",
-            "county": "Nairobi",
-            "link": "",
-            "name": "Equity Afia, Eastleigh",
-            "building": "Off General Waruingi Road, near Ismariot hotel",
-            "tel": "0765 000085",
-            "email": "",
-            "services": [],
-            "operatingHours":{
+        }
+    },
+    {
+        "area": "Eastleigh",
+        "county": "Nairobi",
+        "link": "",
+        "name": "Equity Afia, Eastleigh",
+        "building": "Off General Waruingi Road, near Ismariot hotel",
+        "tel": "0765 000085",
+        "email": "https://goo.gl/maps/ULNwv6JqB8u4h12y9",
+        "services": [],
+        "operatingHours":{
                 "Weekdays": "8.00 am to 8.00 pm",
                 "Weekends": "10.00 am to 6.00 pm on Sundays"
-            }
-        },
-        "Machakos": {
-            "area": "Machakos",
-            "county": "Machakos",
-            "link": "",
-            "name": "Equity Afia Medical Centre, Machakos",
-            "building": "Kiamba Mall 2nd floor, Along Ngei Road",
-            "tel": "0765 000067",
-            "email": "",
-            "services": [],
-            "operatingHours":{
+        }
+    },
+    {
+        "area": "Machakos",
+        "county": "Machakos",
+        "link": "https://goo.gl/maps/i5kWCyyg3hGfNDGWA",
+        "name": "Equity Afia Medical Centre, Machakos",
+        "building": "Kiamba Mall 2nd floor, Along Ngei Road",
+        "tel": "0765 000067",
+        "email": "",
+        "services": [],
+        "operatingHours":{
                 "Weekdays": "8.00 am to 7.00 pm",
                 "Weekends": "9.00 am to 5.00 pm"
-            }
-        },
-        "Juja": {
-            "area": "Juja",
-            "county": "Kiambu",
-            "link": "",
-            "name": "Equity Afia, Juja",
-            "building": "Kalimoni Highwayview Plaza, Ground Floor, Near Juja Bridge",
-            "tel": "0765 000062",
-            "email": "jujareception@equityafia.co.ke",
-            "services": [],
-            "operatingHours":{
+        }
+    },
+    {
+        "area": "Juja",
+        "county": "Kiambu",
+        "link": "https://goo.gl/maps/fcTQAHr4aKmnLxt46",
+        "name": "Equity Afia, Juja",
+        "building": "Kalimoni Highwayview Plaza, Ground Floor, Near Juja Bridge",
+        "tel": "0765 000062",
+        "email": "jujareception@equityafia.co.ke",
+        "services": [],
+        "operatingHours":{
                 "Weekdays": "9.00 am to 9.00 pm",
                 "Weekends": "9.00 am to 7.30 pm"
-            }
-        },
-        "Kitui": {
-            "area": "Kitui",
-            "county": "Kitui",
-            "link": "",
-            "name": "Equity Afia, Kitui",
-            "building": "C House, 2nd Floor, Kitui-Kibwezi Road opp. Maguna Supermarket",
-            "tel": "0765 000058",
-            "email": "kituireception@equityafia.co.ke",
-            "services": [],
-            "operatingHours":{
+        }
+    },
+    {
+        "area": "Kitui",
+        "county": "Kitui",
+        "link": "https://goo.gl/maps/uqbgru8TEPjEENxv7",
+        "name": "Equity Afia, Kitui",
+        "building": "C House, 2nd Floor, Kitui-Kibwezi Road opp. Maguna Supermarket",
+        "tel": "0765 000058",
+        "email": "kituireception@equityafia.co.ke",
+        "services": [],
+        "operatingHours":{
                 "Weekdays": "8.00 am to 7.00 pm",
                 "Weekends": "9.00 am to 6.00 pm"
-            }
-        },
-        "SouthB": {
-            "area": "SouthB",
-            "county": "Nairobi",
-            "link": "",
-            "name": "Equity Afia, South B",
-            "building": "Vumira House, 1st Floor, Mchumbi Road, South B Shopping Centre",
-            "tel": "0765 000061",
-            "email": "southbreception@equityafia.co.ke",
-            "services": [],
-            "operatingHours":{
+        }
+    },
+    {
+        "area": "SouthB",
+        "county": "Nairobi",
+        "link": "https://goo.gl/maps/xjmGy3uxed3Te6HX9",
+        "name": "Equity Afia, South B",
+        "building": "Vumira House, 1st Floor, Mchumbi Road, South B Shopping Centre",
+        "tel": "0765 000061",
+        "email": "southbreception@equityafia.co.ke",
+        "services": [],
+        "operatingHours":{
                 "Weekdays": "8.00 am to 7.00 pm",
                 "Weekends": "9.00 am to 6.00 pm"
-            }
-        },
-        "NgongRoad": {
-            "area": "Ngong Road",
-            "county": "Nairobi",
-            "link": "",
-            "name": "Equity Afia, Ngong Road",
-            "building": "KISM Towers, 1st Floor, Ngong Road, near Prestige Mall",
-            "tel": "0765 000056",
-            "email": "ngongroadreception@equityafia.co.ke",
-            "services": [],
-            "operatingHours":{
+        }
+    },
+    {
+        "area": "Ngong Road",
+        "county": "Nairobi",
+        "link": "https://goo.gl/maps/unFDjoLEd6WsrMcm8",
+        "name": "Equity Afia, Ngong Road",
+        "building": "KISM Towers, 1st Floor, Ngong Road, near Prestige Mall",
+        "tel": "0765 000056",
+        "email": "ngongroadreception@equityafia.co.ke",
+        "services": [],
+        "operatingHours":{
                 "Weekdays": "8.00 am to 7.00 pm",
                 "Weekends": "9.00 am to 5.00 pm only on Saturday"
-            }
-        },
-        "Pangani": {
-            "area": "Pangani",
-            "county": "Nairobi",
-            "link": "",
-            "name": "Equity Afia, Pangani",
-            "building": "Goodwill Building Ground Floor-Agoi Road, Pangani Shopping Centre",
-            "tel": "0765 000065",
-            "email": "panganireception@equityafia.co.ke",
-            "services": [],
-            "operatingHours":{
+        }
+    },
+    {
+        "area": "Pangani",
+        "county": "Nairobi",
+        "link": "https://goo.gl/maps/DSYrTKkqytgtyp4q9",
+        "name": "Equity Afia, Pangani",
+        "building": "Goodwill Building Ground Floor-Agoi Road, Pangani Shopping Centre",
+        "tel": "0765 000065",
+        "email": "panganireception@equityafia.co.ke",
+        "services": [],
+        "operatingHours":{
                 "Weekdays": "24 hrs",
                 "Weekends": "24 hrs"
-            }
-        },
-        "Murang'a": {
-            "area": "Murang'a",
-            "county": "Murang'a",
-            "link": "",
-            "name": "Equity Afia, Murang'a",
-            "building": "ECN Building Ground & 1st Floor, Uhuru Street near National oil Petrol Station, Opp Absa bank",
-            "tel": "0765 000052",
-            "email": "Murangareception@equityafia.co.ke",
-            "services": [],
-            "operatingHours":{
+        }
+    },
+    {
+        "area": "Murang'a",
+        "county": "Murang'a",
+        "link": "https://goo.gl/maps/3BQsZiWmpLMyGcYUA",
+        "name": "Equity Afia, Murang'a",
+        "building": "ECN Building Ground & 1st Floor, Uhuru Street near National oil Petrol Station, Opp Absa bank",
+        "tel": "0765 000052",
+        "email": "Murangareception@equityafia.co.ke",
+        "services": [],
+        "operatingHours":{
                 "Weekdays": "8.00 am to 8.00 pm",
                 "Weekends": "9.00 am to 6.00 pm"
-            }
-        },
-        "Kisii": {
-            "area": "Kisii",
-            "county": "Kisii",
-            "link": "",
-            "name": "Equity Afia, Kisii",
-            "building": "Ouru Complex, 3rd floor Kisii-Kisumu Highway",
-            "tel": "0765 000053",
-            "email": "kisiireception@equityafia.co.ke",
-            "services": [],
-            "operatingHours":{
+        }
+    },
+    {
+        "area": "Kisii",
+        "county": "Kisii",
+        "link": "https://goo.gl/maps/Am5gE5HyL3QLKQVC9",
+        "name": "Equity Afia, Kisii",
+        "building": "Ouru Complex, 3rd floor Kisii-Kisumu Highway",
+        "tel": "0765 000053",
+        "email": "kisiireception@equityafia.co.ke",
+        "services": [],
+        "operatingHours":{
                 "Weekdays": "8.00 am to 8.00 pm",
                 "Weekends": "8.00 am to 8.00 pm"
-            }
-        },
-        "Matuu": {
-            "area": "Matuu",
-            "county": "TBD",
-            "link": "",
-            "name": "Equity Afia, Matuu",
-            "building": "3rd Floor, A1 Plaza, along KC Road, Matuu",
-            "tel": "",
-            "email": "matuureception@equityafia.co.ke",
-            "services": [],
-            "operatingHours":{
+        }
+    },
+    {
+        "area": "Matuu",
+        "county": "TBD",
+        "link": "https://goo.gl/maps/9qaT2prT9LaYxP1V6",
+        "name": "Equity Afia, Matuu",
+        "building": "3rd Floor, A1 Plaza, along KC Road, Matuu",
+        "tel": "",
+        "email": "matuureception@equityafia.co.ke",
+        "services": [],
+        "operatingHours":{
                 "Weekdays": "8.00 am to 8.00 pm",
                 "Weekends": "9.00 am to 7.00 pm"
-            }
-        },
-        "Kenol": {
-            "area": "Kenol",
-            "county": "TBD",
-            "link": "",
-            "name": "Equity Afia, Kenol",
-            "building": "Equity Bank Building, Mbotco Plaza, First Floor along Kenol Sagana Road",
-            "tel": "0765 000049",
-            "email": "kenolreception@equityafia.co.ke",
-            "services": [],
-            "operatingHours":{
+        }
+    },
+    {
+        "area": "Kenol",
+        "county": "TBD",
+        "link": "https://goo.gl/maps/DQxLmNs1aCwQ3pxR8",
+        "name": "Equity Afia, Kenol",
+        "building": "Equity Bank Building, Mbotco Plaza, First Floor along Kenol Sagana Road",
+        "tel": "0765 000049",
+        "email": "kenolreception@equityafia.co.ke",
+        "services": [],
+        "operatingHours":{
                 "Weekdays": "8.00 am to 8.00 pm",
                 "Weekends": "9.00 am to 6.00 pm"
-            }
-        },
-    }
+        }
+    },
 ]

@@ -8,6 +8,7 @@ import datetime as dt
 from dotenv import load_dotenv
 import os
 from twilio.rest import Client
+from utils import locations
 
 load_dotenv()
 
@@ -201,7 +202,7 @@ class Implementor:
             return message
         except:
             return None
-        
+
     def send_update_info(self, phone, msg):
         try:
             message = client.messages \
@@ -268,6 +269,9 @@ class Implementor:
 
         except:
             return []
+
+    def generate_location_info(self, name, building, tel, index, link):
+        return f"{index+1}. {name} - {building} -{link} - {tel}"
 
 
 # if __name__ == "__main__":

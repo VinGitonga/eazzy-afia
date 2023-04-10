@@ -6,6 +6,7 @@ from db import (Implementor, Appointment)
 from redis_om import Migrator
 from flask_cors import CORS
 import time
+from utils import locations as clinics_locs
 
 app = Flask(__name__)
 
@@ -31,10 +32,9 @@ menu = """
 2. Cancel an appointment
 3. View appointments
 4. View our services
-5. View our locations
-6. Contacts
-7. Check Appointment
-8. Send a Feedback
+5. View our locations and contacts
+6. Check Appointment
+7. Send a Feedback
 
 Reply with the number of the option you want to select
 
@@ -77,6 +77,14 @@ contacts = """
 4. 0769686091
 """
 
+# generated locations with contacts
+generated_locs = "\n".join([
+                f"{i + 1}. {location['name']} - {location['building']} - {location['link']} - {location['tel']}"
+                for i, location in enumerate(clinics_locs[:10])
+            ])
+
+# print(generated_locs)
+
 # write a regex for checking reply for name and ID as example above
 
 name_id_regex = re.compile(r'^([a-zA-Z]+)(?:\s([a-zA-Z]+))?,?\s?(\d{7,8})$')
@@ -90,7 +98,7 @@ book_appointment_regex = re.compile(
 # regex for cancelling appointment /cancel-ID-appointmentID and ID should 7 or 8 digits and appointment ID to be 6 digits
 
 cancel_appointment_regex = re.compile(r'^/cancel-(\d{7,8})-(\d{6})$')
-
+ 
 # regex for checking appointment /check-appointmentID and appointment ID to be 6 digits
 
 check_appointment_regex = re.compile(r'^/check-(\d{6})$')
@@ -118,6 +126,8 @@ def incoming_sms():
 
     # Start our TwiML response
     resp = MessagingResponse()
+
+    print(body)
 
     # Determine the right reply for this message
     if body == 'hello':
@@ -288,7 +298,7 @@ def incoming_sms():
         resp.message(
             "You can find us in these locations.\n"
             +
-            locations
+            generated_locs
             +
             "\n\nPlease reply with the number of the service you would like to access.\n"
             "E.g. 1\n"
@@ -297,18 +307,6 @@ def incoming_sms():
         )
 
     elif body == '6':
-        resp.message(
-            "You can contact us on these numbers.\n"
-            +
-            contacts
-            +
-            "\n\nPlease reply with the number of the service you would like to access.\n"
-            "E.g. 1\n"
-            +
-            menu
-        )
-
-    elif body == '7':
         # Now we request the user to send the appointment to check the appointment
         resp.message(
             "Please reply with your appointment ID you would like to check.\n"
@@ -365,7 +363,7 @@ def incoming_sms():
                     menu
                 )
 
-    elif body == '8':
+    elif body == '7':
         # request user to send feedback of our services
         resp.message(
             "Please reply with your feedback.\n"
