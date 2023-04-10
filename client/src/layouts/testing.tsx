@@ -43,7 +43,7 @@ interface LinkItemProps {
 
 const LinkItems = [
   {
-    name: "Home",
+    name: "Dashboard",
     icon: BiHome,
     href: `/dashboard`,
   },

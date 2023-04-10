@@ -23,6 +23,16 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogOverlay,
+  ButtonGroup,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverFooter,
+  PopoverHeader,
+  PopoverTrigger,
+  Textarea,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
@@ -50,6 +60,7 @@ const dashboard = () => {
   const handleActiveBtn = (activeText: any) => setActiveBtn(activeText);
   const handleMenuSelected = (selectedMenu: any) =>
     setMenuSelected(selectedMenu);
+  const initialFocusRef = useRef(null);
 
   const fetchAppointments = async () => {
     const resp = await axios.get(`${baseURL}/get-appointments`);
@@ -138,6 +149,37 @@ const dashboard = () => {
                 Pending
               </Button>
             )}
+            <Popover initialFocusRef={initialFocusRef}
+              placement='bottom'
+              closeOnBlur={false}
+            >
+              <PopoverTrigger>
+                <Button>Send Updates</Button>
+              </PopoverTrigger>
+              <PopoverContent color='white' bg='blue.800' borderColor='blue.800'>
+                <PopoverHeader pt={4} fontWeight='bold' border='0'>
+                  Send Updates
+                </PopoverHeader>
+                <PopoverArrow />
+                <PopoverCloseButton />
+                <PopoverBody>
+                 <Textarea  placeholder="Type something ..." />
+                </PopoverBody>
+                <PopoverFooter
+                  border='0'
+                  display='flex'
+                  alignItems='center'
+                  justifyContent='space-between'
+                  pb={4}
+                >
+                  
+                  <ButtonGroup size='sm'>
+                    <Button colorScheme='green'>Send</Button>
+                  </ButtonGroup>
+                </PopoverFooter>
+              </PopoverContent>
+            </Popover>
+
           </HStack>
           <Spacer />
           <HStack spacing={2}>
@@ -300,7 +342,7 @@ const FarmItem = ({
         </Text>
         <HStack spacing={2}>
           {(item.status as AppointementStatus) ===
-          AppointementStatus.Pending ? (
+            AppointementStatus.Pending ? (
             <>
               <Button
                 bg={"black"}
