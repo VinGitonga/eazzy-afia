@@ -40,6 +40,7 @@ import { Helmet } from "react-helmet";
 import { IoIosSearch } from "react-icons/io";
 import { TbChevronDown } from "react-icons/tb";
 import { toast } from "react-hot-toast";
+import { getphones } from "@/utils";
 
 const baseURL = "http://localhost:5000";
 
@@ -56,6 +57,7 @@ interface ApproveCancelDialogProps {
 const dashboard = () => {
   const [activeBtn, setActiveBtn] = useState("Approved");
   const [menuSelected, setMenuSelected] = useState("Pending");
+  const [msg, setMsg] = useState<string>("");
   const [appointments, setAppointments] = useState<IAppointment[]>([]);
   const handleActiveBtn = (activeText: any) => setActiveBtn(activeText);
   const handleMenuSelected = (selectedMenu: any) =>
@@ -73,6 +75,31 @@ const dashboard = () => {
   }, []);
 
   console.log(appointments);
+
+  const sendUpdates = async () => {
+
+    const phones = getphones(appointments);
+    if (!msg || phones.length === 0) {
+      return;
+    }
+
+    let message = msg
+
+    try {
+      setMsg("")
+      toast.success("Updates sent")
+      await axios.post(`${baseURL}/send-bulk-updates`, {
+        message,
+        phones
+      })
+    } catch (err) {
+      console.log(err)
+    }
+
+
+
+  }
+
 
   return (
     <>
@@ -151,10 +178,15 @@ const dashboard = () => {
             )}
             <Popover initialFocusRef={initialFocusRef}
               placement='bottom'
-              closeOnBlur={false}
             >
               <PopoverTrigger>
-                <Button>Send Updates</Button>
+                <Button bg={"gray.200"}
+                  textTransform={"uppercase"}
+                  color={"black"}
+
+                  fontSize={"xs"} _hover={{
+                    bg: "gray.300",
+                  }}>Send Updates</Button>
               </PopoverTrigger>
               <PopoverContent color='white' bg='blue.800' borderColor='blue.800'>
                 <PopoverHeader pt={4} fontWeight='bold' border='0'>
@@ -163,7 +195,7 @@ const dashboard = () => {
                 <PopoverArrow />
                 <PopoverCloseButton />
                 <PopoverBody>
-                 <Textarea  placeholder="Type something ..." />
+                  <Textarea placeholder="Type something ..." value={msg} onChange={e => setMsg(e.target.value)} />
                 </PopoverBody>
                 <PopoverFooter
                   border='0'
@@ -172,14 +204,13 @@ const dashboard = () => {
                   justifyContent='space-between'
                   pb={4}
                 >
-                  
+
                   <ButtonGroup size='sm'>
-                    <Button colorScheme='green'>Send</Button>
+                    <Button colorScheme='green' onClick={sendUpdates}>Send</Button>
                   </ButtonGroup>
                 </PopoverFooter>
               </PopoverContent>
             </Popover>
-
           </HStack>
           <Spacer />
           <HStack spacing={2}>
