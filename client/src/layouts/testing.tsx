@@ -12,7 +12,6 @@ import {
   DrawerContent,
   Text,
   useDisclosure,
-  ChakraProvider,
   Card,
   CardBody,
   Avatar,
@@ -65,7 +64,6 @@ export default function TestingLayout() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <ChakraProvider>
       <Box
         minH="100vh"
         bg={useColorModeValue("gray.100", "gray.900")}
@@ -95,7 +93,6 @@ export default function TestingLayout() {
           <Outlet />
         </Box>
       </Box>
-    </ChakraProvider>
   );
 }
 interface SidebarProps extends BoxProps {

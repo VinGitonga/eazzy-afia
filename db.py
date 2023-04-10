@@ -7,6 +7,7 @@ import random
 import datetime as dt
 from dotenv import load_dotenv
 import os
+from twilio.rest import Client
 
 load_dotenv()
 
@@ -16,6 +17,9 @@ def generate_random_number():
 
 
 url = os.getenv("REDIS_OM_URL")
+account_sid = os.getenv('TWILIO_ACCOUNT_SID')
+auth_token = os.getenv('TWILIO_AUTH_TOKEN')
+client = Client(account_sid, auth_token)
 
 # Tuple for appointment status
 APPOINTMENT_STATUS = (
@@ -167,13 +171,80 @@ class Implementor:
         feedback.save()
 
         return feedback
-    
+
     def get_all_feedbacks(self):
         try:
             feedbacks = UserFeedback.find().all()
             return feedbacks
         except:
             return None
+
+    def send_text_confirmation(self, phone, status):
+        try:
+            message = client.messages \
+                .create(
+                    body=f"Hello, your appointment has been {status}!",
+                    from_='whatsapp:+14155238886',
+                    to=f"whatsapp:+{phone}"
+                )
+            return message
+        except:
+            return None
+
+    def approve_appointment_status(self, appointmentID):
+        try:
+            appointment = Appointment.find(
+                Appointment.appointmentId == appointmentID).first()
+            appointment.status = "confirmed"
+            appointment.save()
+            # send text to user
+
+            self.send_text_confirmation(
+                appointment.phone, appointment.status  # type: ignore
+            )
+
+            return True
+        except:
+            return False
+
+    def reject_appointment_status(self, appointmentID):
+        try:
+            appointment = Appointment.find(
+                Appointment.appointmentId == appointmentID).first()
+            appointment.status = "cancelled"
+            appointment.save()
+            # send text to user
+
+            self.send_text_confirmation(
+                appointment.phone, appointment.status  # type: ignore
+            )
+            return True
+        except:
+            return False
+
+    def get_all_appointments(self):
+        try:
+
+            appointments = Appointment.find().all()
+
+            res_apps = []
+
+            for appointment in appointments:
+                res_apps.append({
+                    "id": appointment.id,  # type: ignore
+                    "name": appointment.name,  # type: ignore
+                    "service": appointment.service,  # type: ignore
+                    "date": appointment.date,  # type: ignore
+                    "time": appointment.time,  # type: ignore
+                    "phone": appointment.phone,  # type: ignore
+                    "appointmentId": appointment.appointmentId,  # type: ignore
+                    "status": appointment.status  # type: ignore
+                })
+
+            return res_apps
+
+        except:
+            return []
 
 
 # if __name__ == "__main__":

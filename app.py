@@ -1,11 +1,14 @@
 
-from flask import Flask, request, redirect
+from flask import Flask, jsonify, request, json
 from twilio.twiml.messaging_response import MessagingResponse
 import re
 from db import (Implementor, Appointment)
 from redis_om import Migrator
+from flask_cors import CORS
 
 app = Flask(__name__)
+
+CORS(app)
 
 # Initialize the database with indexes
 Migrator().run()
@@ -30,6 +33,7 @@ menu = """
 5. View our locations
 6. Contacts
 7. Check Appointment
+8. Send a Feedback
 
 Reply with the number of the option you want to select
 
@@ -90,7 +94,9 @@ cancel_appointment_regex = re.compile(r'^/cancel-(\d{7,8})-(\d{6})$')
 
 check_appointment_regex = re.compile(r'^/check-(\d{6})$')
 
+# regex for sending feedback /feedback feedbacktext
 
+feedback_regex = re.compile(r'^/feedback (.*)$')
 
 
 @app.route("/")
@@ -107,13 +113,17 @@ def incoming_sms():
     phoneno = request.values.get('WaId')
     body = request.values.get('Body', None)
 
+    user = implementor.check_user(phoneno)
+
     print(body)
+    print(user)
 
     # Start our TwiML response
     resp = MessagingResponse()
 
     # Determine the right reply for this message
     if body == 'hello':
+        print("Yes")
         resp.message(
             f"Good {implementor.get_time_of_day()} {profile_name}, welcome to the Eazzy Afya Online Service.\n"
             "Please reply with the number of the service you would like to access.\n"
@@ -127,8 +137,7 @@ def incoming_sms():
         name = name_match.group(1)
         id = name_match.group(3)
 
-        user = implementor.check_user(phoneno)
-
+        
         if user is None:
             implementor.create_user(name, phoneno, id)
 
@@ -157,6 +166,7 @@ def incoming_sms():
         )
 
     elif book_appointment_regex.match(body):  # type: ignore
+        print("Imagine")
         book_appointment_match = book_appointment_regex.match(
             body)  # type: ignore
         name = book_appointment_match.group(1)
@@ -165,7 +175,7 @@ def incoming_sms():
         date = book_appointment_match.group(5)
         time = book_appointment_match.group(6)
 
-        user = implementor.check_user(phoneno)
+        
 
         if user is None:
             resp.message(
@@ -344,8 +354,12 @@ def incoming_sms():
                     f"Date: {appointment.date}\n"  # type: ignore
                     f"Time: {appointment.time}\n"  # type: ignore
                     f"Phone Number: {appointment.phone}\n"  # type: ignore
+                    # type: ignore
+                    # type: ignore
                     f"Appointment ID: {appointment.appointmentId}\n" # type: ignore
-                    f"Appointment Status: {appointment.status}\n\n"  # type: ignore
+                    # type: ignore
+                    # type: ignore
+                    f"Appointment Status: {appointment.status}\n\n" # type: ignore
                     +
                     "\nPlease reply with the number of the service you would like to access.\n"
                     "E.g. 1\n"
@@ -353,13 +367,87 @@ def incoming_sms():
                     menu
                 )
 
+    elif body == '8':
+        # request user to send feedback of our services
+        resp.message(
+            "Please reply with your feedback.\n"
+            "E.g. /feedback I love your services\n"
+        )
+
+    elif feedback_regex.match(body):  # type: ignore
+        feedback_match = feedback_regex.match(body)  # type: ignore
+        feedback = feedback_match.group(1)
+
+        user = implementor.check_user(phoneno)
+
+        if user is None:
+            resp.message(
+                "You have not registered. Please reply with your name and ID number to continue.\n"
+                "E.g. John Doe, 12345678\n"
+            )
+
+        else:
+            implementor.save_feedback(
+                user.id, phoneno, feedback)  # type: ignore
+
+            resp.message(
+                "Thank you for your feedback.\n"
+                "Please reply with the number of the service you would like to access.\n"
+                "E.g. 1\n"
+                +
+                menu
+            )
+
     elif body == 'bye':
         resp.message(
             "Thank you for using our services. We hope to see you again soon.\n"
         )
 
+    else:
+        resp.message(
+            "Invalid input. Please reply with the number of the service you would like to access.\n"
+            "E.g. 1\n"
+            +
+            menu
+        )
+
     return str(resp)
 
+@app.route("/approve-appointments", methods=['POST'])
+def approve():
+    data = json.loads(request.data)
+
+    data = dict(data)
+
+    appointmentId = data["appointmentId"]
+
+    approval_status = implementor.approve_appointment_status(appointmentId)
+
+    if approval_status:
+        return "Approved", 200
+    else:
+        return "Not Approved", 400
+    
+@app.route("/cancel-appointments", methods=['POST'])
+def cancel():
+    data = json.loads(request.data)
+
+    data = dict(data)
+
+    appointmentId = data["appointmentId"]
+
+    cancel_status = implementor.reject_appointment_status(appointmentID=appointmentId)
+
+    if cancel_status:
+        return "Cancelled", 200
+    else:
+        return "Not Cancelled", 400
+    
+@app.route("/get-appointments", methods=['GET'])
+def get_appointments():
+    appointments = implementor.get_all_appointments()
+
+    return jsonify(appointments) # type: ignore
 
 if __name__ == "__main__":
     app.run(debug=True)
