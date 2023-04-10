@@ -115,9 +115,6 @@ def incoming_sms():
 
     user = implementor.check_user(phoneno)
 
-    print(body)
-    print(user)
-
     # Start our TwiML response
     resp = MessagingResponse()
 
@@ -448,6 +445,13 @@ def get_appointments():
     appointments = implementor.get_all_appointments()
 
     return jsonify(appointments) # type: ignore
+
+@app.route("/get-feedbacks", methods=['GET'])
+def get_all_feedbacks():
+    feedbacks = implementor.get_all_feedbacks()
+
+    return jsonify(feedbacks)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

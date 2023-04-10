@@ -175,9 +175,20 @@ class Implementor:
     def get_all_feedbacks(self):
         try:
             feedbacks = UserFeedback.find().all()
-            return feedbacks
+            feeds = []
+
+            for feedback in feedbacks:
+                feeds.append({
+                    "id": feedback.id,  # type: ignore
+                    "phone": feedback.phone,  # type: ignore
+                    "feedback": feedback.feedback,  # type: ignore
+                    "date": feedback.date,  # type: ignore
+                    "time": feedback.time,  # type: ignore
+                    "feedbackId": feedback.feedbackId  # type: ignore
+                })
+            return feeds
         except:
-            return None
+            return []
 
     def send_text_confirmation(self, phone, status):
         try:
