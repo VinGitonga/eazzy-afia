@@ -42,7 +42,7 @@ We are proud of the fact that we were able to build a working application. We ar
 
 ### Location
 
-[![HkQw4g.md.png](https://iili.io/HkQtwk7.md.png)](https://iili.io/HkQtwk7.md.png)
+[![HkQw4g.md.png](https://iili.io/HkQy5OB.md.png)](https://iili.io/HkQy5OB.md.png)
 
 ## Web (Appointments UI)
 
