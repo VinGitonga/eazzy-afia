@@ -34,20 +34,20 @@ We are proud of the fact that we were able to build a working application. We ar
 
 ### Appointments
 
-[![HkQgKu4.md.png](https://iili.io/HkQgKu4.th.png)](https://iili.io/HkQgKu4.th.png)
+[![HkQgKu4.md.png](https://iili.io/HkQgKu4.md.png)](https://iili.io/HkQgKu4.md.png)
 
 ### Services
 
-[![s9n9Z4.md.png](https://iili.io/HkQtwk7.th.png)](https://iili.io/HkQtwk7.th.png)
+[![s9n9Z4.md.png](https://iili.io/HkQtwk7.md.png)](https://iili.io/HkQtwk7.md.png)
 
 ### Location
 
-[![HkQw4g.md.png](https://iili.io/HkQtwk7.th.png)](https://iili.io/HkQtwk7.th.png)
+[![HkQw4g.md.png](https://iili.io/HkQtwk7.md.png)](https://iili.io/HkQtwk7.md.png)
 
 ## Web (Appointments UI)
 
-[![HkQw4g.md.png](https://iili.io/HkZdm6F.th.png)](https://iili.io/HkZdm6F.th.png)
+[![HkQw4g.md.png](https://iili.io/HkZdm6F.md.png)](https://iili.io/HkZdm6F.md.png)
 
 ## Web (Feedbacks UI)
 
-[![HkQw4g.md.png](https://iili.io/HkZqzhv.th.png)](https://iili.io/HkZqzhv.th.png)
+[![HkQw4g.md.png](https://iili.io/HkZqzhv.md.png)](https://iili.io/HkZqzhv.md.png)
